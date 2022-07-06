@@ -1,0 +1,20 @@
+replicaCount: 1
+
+image:
+  repository: kodekloud/examplevotingapp_worker:v1
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  port: 80
+  name: worker
+deployment:
+  name: worker
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+container:
+  name: worker
